@@ -5,6 +5,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 
 /**
@@ -15,6 +16,9 @@ import javax.jws.soap.SOAPBinding;
  */
 @WebService(name = "ContractFirstWebServicePort", targetNamespace = "http://www.bivgroup.com/ContractFirstWebService")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
+@XmlSeeAlso({
+    ObjectFactory.class
+})
 public interface ContractFirstWebServicePort {
 
 
@@ -26,5 +30,14 @@ public interface ContractFirstWebServicePort {
     @WebMethod
     @WebResult(name = "returnXMLString", partName = "returnXMLString")
     public String getXML();
+
+    /**
+     * 
+     * @return
+     *     returns com.bivgroup.ws.University
+     */
+    @WebMethod
+    @WebResult(name = "uni", partName = "uni")
+    public University getUni();
 
 }

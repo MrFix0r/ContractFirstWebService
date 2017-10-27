@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<University name = "Мупоч">
-    <Faculty name="ФСГН"/>
+<uni:report xmlns:uni="myScheme">
+<uni:University name="Мупоч">
+    <uni:Faculty name="ФСГН"/>
     <Faculty name="ИСАУ"/>
-</University>
+</uni:University>
+</uni:report>

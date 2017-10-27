@@ -18,7 +18,7 @@
                 <configuration>
                     <wsdlDirectory>${basedir}/src/main/resources</wsdlDirectory>
                     <packageName>com.bivgroup.ws</packageName>
-                    <!--<keep>true</keep>-->
+                    <keep>true</keep>
                     <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
                 </configuration>
                 <executions>

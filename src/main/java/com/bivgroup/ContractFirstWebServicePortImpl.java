@@ -1,17 +1,14 @@
 package com.bivgroup;
 
 import com.bivgroup.ws.ContractFirstWebServicePort;
-import xmlSecondStructure.University;
+import com.bivgroup.ws.Report;
+import com.bivgroup.ws.University;
 
-import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.bind.*;
 import javax.xml.ws.WebServiceContext;
-import javax.xml.ws.handler.MessageContext;
 import java.io.File;
 import java.io.StringWriter;
-import java.util.List;
-import java.util.Map;
 
 @WebService(endpointInterface = "com.bivgroup.ws.ContractFirstWebServicePort")
 public class ContractFirstWebServicePortImpl implements ContractFirstWebServicePort {
@@ -37,5 +34,20 @@ public class ContractFirstWebServicePortImpl implements ContractFirstWebServiceP
             e.printStackTrace();
         }
         return sw.toString();
+    }
+
+    @Override
+    public University getUni() {
+        JAXBContext jaxbContext = null;
+        try {
+            jaxbContext = JAXBContext.newInstance(Report.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            File XMLfile = new File("../applications/ContractFirstWebService/WEB-INF/classes/uni.xml");
+            Report uni = (Report) jaxbUnmarshaller.unmarshal(XMLfile);
+            return uni.getUniversity();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
