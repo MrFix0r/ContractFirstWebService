@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ContractFirstWebService"
+                  targetNamespace="http://www.bivgroup.com/ContractFirstWebService"
+                  xmlns:tns="http://www.bivgroup.com/ContractFirstWebService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:types>
+        <xsd:import schemaLocation="uni.xsd"></xsd:import>
+    </wsdl:types>
+    <wsdl:message name="xmlRequest">
+        <!--<wsdl:part name="inputXMLString" type="xsd:string" />-->
+    </wsdl:message>
+    <wsdl:message name="xmlResponse">
+        <wsdl:part name="returnXMLString" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:portType name="ContractFirstWebServicePort">
+        <wsdl:operation name="getXML">
+            <wsdl:input name="get_XMl" message="tns:xmlRequest" />
+            <wsdl:output name="get_XMLResponse" message="tns:xmlResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ContractFirstWebServiceBinding" type="tns:ContractFirstWebServicePort">
+        <soap:binding style="rpc"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="getXML">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" namespace="http://www.bivgroup.com/" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://www.bivgroup.com/" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ContractFirstWebService">
+        <wsdl:port name="ContractFirstWebServicePort" binding="tns:ContractFirstWebServiceBinding">
+            <soap:address location="http://bivgroup.com/ContractFirstWebService" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
