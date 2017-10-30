@@ -1,52 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema elementFormDefault="qualified"
            targetNamespace="myScheme"
+           xmlns:uni="myScheme"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
     <xs:complexType name="Faculty">
-      <xs:sequence>
-        <xs:element name="Cathedra" type="Cathedra" minOccurs="0" maxOccurs="unbounded"/>
-      </xs:sequence>
-      <xs:attribute type="xs:string" name="name" use="required"/>
+        <xs:sequence>
+            <xs:element name="Cathedra" type="uni:Cathedra" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="name" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="Group">
-      <xs:sequence>
-        <xs:element name="Student" type="Student" maxOccurs="unbounded" minOccurs="0"/>
-      </xs:sequence>
-      <xs:attribute type="xs:string" name="name" use="required"/>
+        <xs:sequence>
+            <xs:element name="Student" type="uni:Student" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="name" use="required"/>
     </xs:complexType>
 
 
     <xs:element name="report">
-    <xs:complexType>
-        <xs:sequence>
-            <xs:element name="University" type="University"/>
-        </xs:sequence>
-    </xs:complexType>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="University" type="uni:University"/>
+            </xs:sequence>
+        </xs:complexType>
     </xs:element>
 
     <xs:complexType name="University">
-      <xs:sequence>
-        <xs:element name="Faculty" type="Faculty" maxOccurs="unbounded" minOccurs="0"/>
-      </xs:sequence>
-      <xs:attribute type="xs:string" name="name" use="required"/>
+        <xs:sequence>
+            <xs:element name="Faculty" type="uni:Faculty" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="name" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="Cathedra">
-      <xs:sequence>
-        <xs:element name="Group" type="Group" maxOccurs="unbounded" minOccurs="0"/>
-      </xs:sequence>
-      <xs:attribute type="xs:string" name="name" use="required"/>
+        <xs:sequence>
+            <xs:element name="Group" type="uni:Group" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="name" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="Student">
-      <xs:sequence>
-        <xs:element name = "Subject" type="Subject" maxOccurs="unbounded" minOccurs="0"/>
-      </xs:sequence>
-      <xs:attribute type="xs:string" name="name" use="required"/>
-      <xs:attribute type="xs:string" name="surname" use="required"/>
-      <xs:attribute type="Sex" name="sex" use="required"/>
+        <xs:sequence>
+            <xs:element name = "Subject" type="uni:Subject" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="name" use="required"/>
+        <xs:attribute type="xs:string" name="surname" use="required"/>
+        <xs:attribute type="uni:Sex" name="sex" use="required"/>
     </xs:complexType>
 
     <xs:simpleType name="Sex">
@@ -57,19 +58,19 @@
     </xs:simpleType>
 
     <xs:complexType name="Subject">
-      <xs:sequence>
-        <xs:element name = "Mark" type="Mark" maxOccurs="unbounded" minOccurs="0"/>
-      </xs:sequence>
-      <xs:attribute type="xs:string" name="name" use="required"/>
+        <xs:sequence>
+            <xs:element name = "Mark" type="uni:Mark" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="name" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="Mark">
-      <xs:attribute name="rating" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:int">
-            <xs:pattern value = "[1-5]" />
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
+        <xs:attribute name="rating" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:int">
+                    <xs:pattern value = "[1-5]" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
     </xs:complexType>
 </xs:schema>
