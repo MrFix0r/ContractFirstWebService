@@ -34,6 +34,15 @@ public interface ContractFirstWebServicePort {
     /**
      * 
      * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(name = "path", partName = "path")
+    public String getPath();
+
+    /**
+     * 
+     * @return
      *     returns com.bivgroup.ws.University
      */
     @WebMethod

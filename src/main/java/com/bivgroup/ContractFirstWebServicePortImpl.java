@@ -13,8 +13,6 @@ import java.io.StringWriter;
 @WebService(endpointInterface = "com.bivgroup.ws.ContractFirstWebServicePort")
 public class ContractFirstWebServicePortImpl implements ContractFirstWebServicePort {
 
-    WebServiceContext wsctx;
-
     @Override
     public String getXML() {
 
@@ -22,8 +20,8 @@ public class ContractFirstWebServicePortImpl implements ContractFirstWebServiceP
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(University.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            File XMLfile = new File("../applications/ContractFirstWebService/WEB-INF/classes/uni.xml");
-            University uni = (University) jaxbUnmarshaller.unmarshal(XMLfile);
+            ClassLoader loader = this.getClass().getClassLoader();
+            University uni = (University) jaxbUnmarshaller.unmarshal(loader.getResource("uni.xml"));
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             jaxbMarshaller.marshal(uni, sw);
@@ -42,12 +40,19 @@ public class ContractFirstWebServicePortImpl implements ContractFirstWebServiceP
         try {
             jaxbContext = JAXBContext.newInstance(Report.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            File XMLfile = new File("../applications/ContractFirstWebService/WEB-INF/classes/uni.xml");
-            Report uni = (Report) jaxbUnmarshaller.unmarshal(XMLfile);
+            ClassLoader loader = this.getClass().getClassLoader();
+            Report uni = (Report) jaxbUnmarshaller.unmarshal(loader.getResource("uni.xml"));
             return uni.getUniversity();
         } catch (JAXBException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public String getPath() {
+        return "hello";
+//        return this.getClass().getResource("/classes/uni.xml").getPath();
+//        return "Hello";
     }
 }
