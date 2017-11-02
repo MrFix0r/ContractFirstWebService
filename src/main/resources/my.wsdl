@@ -13,13 +13,11 @@
         </xsd:schema>
     </wsdl:types>
     <wsdl:message name="xmlRequest">
-        <!--<wsdl:part name="inputXMLString" type="xsd:string" />-->
     </wsdl:message>
     <wsdl:message name="xmlResponse">
         <wsdl:part name="returnXMLString" type="xsd:string" />
     </wsdl:message>
     <wsdl:message name="uniRequest">
-        <!--<wsdl:part name="inputXMLString" type="xsd:string" />-->
     </wsdl:message>
     <wsdl:message name="uniResponse">
         <wsdl:part name="uni" type="uni:University" />
@@ -28,6 +26,12 @@
     </wsdl:message>
     <wsdl:message name="pathResponse">
         <wsdl:part name="path" type="xsd:string" />
+    </wsdl:message>
+
+    <wsdl:message name="dbRequest">
+    </wsdl:message>
+    <wsdl:message name="dbResponse">
+        <wsdl:part name="dbString" type="xsd:string" />
     </wsdl:message>
 
     <wsdl:portType name="ContractFirstWebServicePort">
@@ -42,6 +46,10 @@
         <wsdl:operation name="getPath">
             <wsdl:input name="get_pathRequest" message="tns:pathRequest" />
             <wsdl:output name="get_pathResponse" message="tns:pathResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="getDB">
+            <wsdl:input name="get_dbRequest" message="tns:dbRequest" />
+            <wsdl:output name="get_dbResponse" message="tns:dbResponse" />
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="ContractFirstWebServiceBinding" type="tns:ContractFirstWebServicePort">
@@ -66,6 +74,15 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="getUni">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" namespace="http://www.bivgroup.com/" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://www.bivgroup.com/" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getDB">
             <soap:operation soapAction="" />
             <wsdl:input>
                 <soap:body use="literal" namespace="http://www.bivgroup.com/" />

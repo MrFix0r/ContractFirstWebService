@@ -2,6 +2,6 @@
 <uni:report xmlns:uni="myScheme">
 <uni:University name="Мупоч">
     <uni:Faculty name="ФСГН"/>
-    <Faculty name="ИСАУ"/>
+    <uni:Faculty name="ИСАУ"/>
 </uni:University>
 </uni:report>

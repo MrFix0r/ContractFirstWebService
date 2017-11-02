@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+
+  nginx:
+    image: nginx
+    container_name: "nginx-xsd"
+    ports: 
+      - "80:80"
+    network_mode: "host"
+    volumes:
+      - "~/mydocker/nginx-xsd:/usr/share/nginx/html"
+
+  wildfly:
+    image: mywildfly
+    container_name: "wildfly"
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+    network_mode: "host"
+
+  db:
+      image: postgres
+      container_name: "postgres"
+      network_mode: "host"
+      volumes:
+        - "./postgres/dump.sql:/docker-entrypoint-initdb.d/1-dump.sql"
+      environment:
+        - "POSTGRES_PASSWORD=postgres"
+        - "POSTGRES_USER=postgres"
+        

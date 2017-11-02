@@ -49,4 +49,13 @@ public interface ContractFirstWebServicePort {
     @WebResult(name = "uni", partName = "uni")
     public University getUni();
 
+    /**
+     * 
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(name = "dbString", partName = "dbString")
+    public String getDB();
+
 }

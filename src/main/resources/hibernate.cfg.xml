@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">postgres</property>
+        <mapping class="db.CathedrasEntity"/>
+        <mapping resource="CathedrasEntity.hbm.xml"/>
+        <mapping class="db.FacultiesEntity"/>
+        <mapping resource="FacultiesEntity.hbm.xml"/>
+        <mapping resource="GroupsEntity.hbm.xml"/>
+        <mapping class="db.GroupsEntity"/>
+        <mapping class="db.MarksEntity"/>
+        <mapping resource="MarksEntity.hbm.xml"/>
+        <mapping resource="StudentsEntity.hbm.xml"/>
+        <mapping class="db.StudentsEntity"/>
+        <mapping class="db.SubjectsEntity"/>
+        <mapping resource="SubjectsEntity.hbm.xml"/>
+        <mapping class="db.UniversitiesEntity"/>
+        <mapping resource="UniversitiesEntity.hbm.xml"/>
+        <!-- <property name="connection.username"/> -->
+        <!-- <property name="connection.password"/> -->
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>
