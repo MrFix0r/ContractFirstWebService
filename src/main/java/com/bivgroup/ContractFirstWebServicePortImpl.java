@@ -71,12 +71,12 @@ public class ContractFirstWebServicePortImpl implements ContractFirstWebServiceP
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
 
-        //Get All Employees
+        //Get All Unies
         Criteria criteria = session.createCriteria(UniversitiesEntity.class);
         StringBuilder sb = new StringBuilder();
-        List<UniversitiesEntity> empList = criteria.list();
-        for(UniversitiesEntity emp : empList){
-            sb.append("ID = ").append(emp.getId()).append(", Name = ").append(emp.getName());
+        List<UniversitiesEntity> uniList = criteria.list();
+        for(UniversitiesEntity uni : uniList){
+            sb.append("ID = ").append(uni.getId()).append(", Name = ").append(uni.getName());
         }
 
         // Rollback transaction to avoid messing test data
