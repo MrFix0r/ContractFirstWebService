@@ -7,9 +7,7 @@ import javax.xml.ws.handler.soap.SOAPHandler;
 import javax.xml.ws.handler.soap.SOAPMessageContext;
 import javax.xml.ws.soap.SOAPFaultException;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 //public  class myHandler {
@@ -48,11 +46,6 @@ public class myHandler implements SOAPHandler<SOAPMessageContext>{
                 //if MAC address is not within the trusted MAC list, then throw SOAPFaultException
                 if (macValue=="hello")
                     generateErrorMessageAndThrowException(soapMsg,"Header Received.");
-//                    return true;
-//                    if(!validMacAddresses.contains(macValue)){
-//                        generateErrorMessageAndThrowException(soapMsg,
-//                                "Invalid mac address, Access is denied.");
-//                    }
 
                     //Output the message to console
                     soapMsg.writeTo(System.out);
