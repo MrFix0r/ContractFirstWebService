@@ -22,8 +22,8 @@
         <mapping resource="SubjectsEntity.hbm.xml"/>
         <mapping class="db.UniversitiesEntity"/>
         <mapping resource="UniversitiesEntity.hbm.xml"/>
-        <!-- <property name="connection.username"/> -->
-        <!-- <property name="connection.password"/> -->
+        <!--<mapping class="db2.FacultiesEntity"/>-->
+        <!--<mapping class="db2.UniversitiesEntity"/>-->
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->

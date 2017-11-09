@@ -5,21 +5,30 @@ import com.bivgroup.ws.Report;
 import com.bivgroup.ws.University;
 import db.HibernateSessionFactory;
 import db.UniversitiesEntity;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.annotation.Resource;
+import javax.jws.HandlerChain;
 import javax.jws.WebService;
 import javax.xml.bind.*;
+import javax.xml.ws.WebServiceContext;
+import javax.xml.ws.handler.MessageContext;
 import java.io.StringWriter;
 import java.util.List;
+import java.util.Map;
 
 @WebService(endpointInterface = "com.bivgroup.ws.ContractFirstWebServicePort")
+//@HandlerChain(file="../../myHandler.xml")
 public class ContractFirstWebServicePortImpl implements ContractFirstWebServicePort {
 
-    Logger log = LogManager.getLogger("MyLog4j2");
+    @Resource
+    private WebServiceContext wsctx;
+
+//    Logger log = LogManager.getLogger("MyLog4j2");
 
     @Override
     public String getXML() {
@@ -52,7 +61,7 @@ public class ContractFirstWebServicePortImpl implements ContractFirstWebServiceP
             Report uni = (Report) jaxbUnmarshaller.unmarshal(loader.getResource("uni.xml"));
             return uni.getUniversity();
         } catch (JAXBException e) {
-            log.info(e);
+//            log.info(e);
             e.printStackTrace();
         }
         return null;
@@ -60,7 +69,16 @@ public class ContractFirstWebServicePortImpl implements ContractFirstWebServiceP
 
     @Override
     public String getPath() {
-        return "hello";
+
+        MessageContext mctx = wsctx.getMessageContext();
+        Map http_headers = (Map) mctx.get(MessageContext.HTTP_REQUEST_HEADERS);
+        List userList = (List) http_headers.get("Username");
+        List passList = (List) http_headers.get("Password");
+
+        if ( userList != null)
+        return userList.get(0).toString();
+        else
+            return "empty";
 //        return this.getClass().getResource("/classes/uni.xml").getPath();
 //        return "Hello";
     }
@@ -69,6 +87,18 @@ public class ContractFirstWebServicePortImpl implements ContractFirstWebServiceP
     public String getDB() {
         System.out.println("Hibernate get from base ");
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
+
+
+//        FacultiesEntity fac1 = new FacultiesEntity();
+//        FacultiesEntity fac2 = new FacultiesEntity();
+//        db2.UniversitiesEntity uni2 = new db2.UniversitiesEntity();
+//        uni2.setName("FromGetDB");
+//        uni2.getFaculties().add(fac1);
+//        uni2.getFaculties().add(fac2);
+//        session.persist(uni2);
+//        session.flush();
+
+
         Transaction tx = session.beginTransaction();
 
         //Get All Unies
@@ -76,7 +106,7 @@ public class ContractFirstWebServicePortImpl implements ContractFirstWebServiceP
         StringBuilder sb = new StringBuilder();
         List<UniversitiesEntity> uniList = criteria.list();
         for(UniversitiesEntity uni : uniList){
-            sb.append("ID = ").append(uni.getId()).append(", Name = ").append(uni.getName());
+            sb.append("ID = ").append(uni.getId()).append(", Name = ").append(uni.getName()).append(" ");
         }
 
         // Rollback transaction to avoid messing test data
