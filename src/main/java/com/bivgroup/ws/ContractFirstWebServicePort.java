@@ -27,7 +27,7 @@ public interface ContractFirstWebServicePort {
      * @return
      *     returns java.lang.String
      */
-    @WebMethod
+    @WebMethod(action = "getXML")
     @WebResult(name = "returnXMLString", partName = "returnXMLString")
     public String getXML();
 
@@ -36,7 +36,7 @@ public interface ContractFirstWebServicePort {
      * @return
      *     returns java.lang.String
      */
-    @WebMethod
+    @WebMethod(action = "getPath")
     @WebResult(name = "path", partName = "path")
     public String getPath();
 
@@ -45,7 +45,7 @@ public interface ContractFirstWebServicePort {
      * @return
      *     returns com.bivgroup.ws.University
      */
-    @WebMethod
+    @WebMethod(action = "getUni")
     @WebResult(name = "uni", partName = "uni")
     public University getUni();
 
@@ -54,7 +54,7 @@ public interface ContractFirstWebServicePort {
      * @return
      *     returns java.lang.String
      */
-    @WebMethod
+    @WebMethod(action = "getDB")
     @WebResult(name = "dbString", partName = "dbString")
     public String getDB();
 

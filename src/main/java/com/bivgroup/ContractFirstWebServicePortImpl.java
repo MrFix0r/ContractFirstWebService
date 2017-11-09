@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @WebService(endpointInterface = "com.bivgroup.ws.ContractFirstWebServicePort")
-//@HandlerChain(file="../../myHandler.xml")
+@HandlerChain(file="../../myHandler.xml")
 public class ContractFirstWebServicePortImpl implements ContractFirstWebServicePort {
 
     @Resource
