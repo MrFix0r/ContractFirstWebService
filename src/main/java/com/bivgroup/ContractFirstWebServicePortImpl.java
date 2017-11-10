@@ -79,8 +79,6 @@ public class ContractFirstWebServicePortImpl implements ContractFirstWebServiceP
         return userList.get(0).toString();
         else
             return "empty";
-//        return this.getClass().getResource("/classes/uni.xml").getPath();
-//        return "Hello";
     }
 
     @Override
@@ -88,7 +86,7 @@ public class ContractFirstWebServicePortImpl implements ContractFirstWebServiceP
         System.out.println("Hibernate get from base ");
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
 
-
+//        Hibernate success try
 //        FacultiesEntity fac1 = new FacultiesEntity();
 //        FacultiesEntity fac2 = new FacultiesEntity();
 //        db2.UniversitiesEntity uni2 = new db2.UniversitiesEntity();
